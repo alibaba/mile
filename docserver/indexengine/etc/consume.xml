@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema>
+	<table>
+		<name>ps_consume_record</name>
+		<tid>0</tid>
+		<row_limit>10000000</row_limit>
+		<support_del>false</support_del>
+
+		<columns>
+			<!-- hash index -->
+			<column>
+				<name>owner_card_no</name>
+				<type>longlong</type>
+				<index_type>hash</index_type>
+			</column>
+
+			<!-- filter index -->
+			<column><name>consume_type</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>consume_status</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>additional_status</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>in_out</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>flag_locked</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>flag_refund</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>consume_refund_status</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>consume_fee</name><type>longlong</type><index_type>filter</index_type></column>
+			<column><name>consume_refund_fee</name><type>longlong</type><index_type>filter</index_type></column>
+			<column><name>service_fee</name><type>longlong</type><index_type>filter</index_type></column>
+			<column><name>currency</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>biz_type</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>biz_sub_type</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>biz_orig</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>biz_state</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>biz_actions</name><type>tiny</type><index_type>filter</index_type></column>
+			<column><name>gmt_biz_create</name><type>longlong</type><index_type>filter</index_type></column>
+			<column><name>gmt_biz_modified</name><type>longlong</type><index_type>filter</index_type></column>
+			<column><name>gmt_receive_pay</name><type>longlong</type><index_type>filter</index_type></column>
+			<column><name>pay_channel</name><type>short</type><index_type>filter</index_type></column>
+			<column><name>access_channel</name><type>short</type><index_type>filter</index_type></column>
+			<column><name>trade_from</name><type>short</type><index_type>filter</index_type></column>
+			<column><name>consume_site</name><type>short</type><index_type>filter</index_type></column>
+
+			<!-- merged filter (storage) -->
+			<column><name>owner_customer_id</name><type>longlong</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>opposite_card_no</name><type>longlong</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>opposite_name</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>opposite_nick_name</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>consume_title</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>biz_in_no</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>biz_out_no</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>biz_extra_no</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>biz_props</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>message_born</name><type>longlong</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>gmt_create</name><type>longlong</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>gmt_modified</name><type>longlong</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>owner_login_id</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>opposite_login_id</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>partner_id</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>product</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>owner_name</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>owner_nick</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+			<column><name>biz_memo</name><type>string</type><index_type>filter</index_type><store_value>false</store_value></column>
+		</columns>
+
+		<merge_columns>
+			<column>owner_customer_id</column>
+			<column>opposite_card_no</column>
+			<column>opposite_name</column>
+			<column>opposite_nick_name</column>
+			<column>consume_title</column>
+			<column>biz_in_no</column>
+			<column>biz_out_no</column>
+			<column>biz_extra_no</column>
+			<column>biz_props</column>
+			<column>message_born</column>
+			<column>gmt_create</column>
+			<column>gmt_modified</column>
+			<column>owner_login_id</column>
+			<column>opposite_login_id</column>
+			<column>partner_id</column>
+			<column>product</column>
+			<column>owner_name</column>
+			<column>owner_nick</column>
+			<column>biz_memo</column>
+		</merge_columns>
+	</table>
+
+</schema>
+

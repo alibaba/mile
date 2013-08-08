@@ -1,0 +1,11 @@
+mile.client.user.name = test
+mile.client.user.password =test
+mile.client.boss.executor.thread.count=0
+mile.client.worker.executor.thread.count=0
+mile.client.execsql.timeout = 3000
+mile.client.merg.server = 127.0.0.1:8964
+
+
+
+
+

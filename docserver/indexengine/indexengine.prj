@@ -1,0 +1,239 @@
+
+indexengine=/Users/liang/work/alipay/mile/src/c/indexengine CD=./ filter="*.h *.c Makefile *.txt *.cpp *.conf" {
+ Makefile
+ CMakeCache.txt
+ CMakeLists.txt
+ CMakeFiles=CMakeFiles {
+  TargetDirectories.txt
+  CMakeTmp=CMakeTmp {
+   CMakeFiles=CMakeFiles {
+    cmTryCompileExec.dir=cmTryCompileExec.dir {
+    }
+   }
+  }
+  CompilerIdC=CompilerIdC {
+   CMakeCCompilerId.c
+  }
+  CompilerIdCXX=CompilerIdCXX {
+   CMakeCXXCompilerId.cpp
+  }
+  Progress=Progress {
+   count.txt
+  }
+ }
+ bin=bin {
+  Makefile
+  CMakeFiles=CMakeFiles {
+   hyperindex.dir=hyperindex.dir {
+    link.txt
+   }
+  }
+ }
+ build=build {
+ }
+ doc=doc {
+  hyperindex.txt
+ }
+ examples=examples {
+ }
+ lib=lib {
+  Makefile
+  CMakeLists.txt
+  CMakeFiles=CMakeFiles {
+  }
+ }
+ m4=m4 {
+ }
+ scripts=scripts {
+ }
+ src=src {
+  hi_block.c
+  hi_btree.c
+  hi_databuffer.c
+  hi_db.c
+  hi_dispatch.c
+  hi_doclist.c
+  hi_dump.c
+  hi_field.c
+  hi_file_op.c
+  hi_filter.c
+  hi_filter_hash.c
+  hi_hash.c
+  hi_hashindex.c
+  hi_hashmap.c
+  hi_mem.c
+  hi_packet_execute.c
+  hi_packet_parse.c
+  hi_profiles.c
+  hi_protocol.c
+  hi_query_basic_struct.c
+  hi_schema_parser.c
+  hi_segment.c
+  hi_server.c
+  hi_set_operator.c
+  hi_sort.c
+  hi_suffix.c
+  hi_table.c
+  hyperindex_delbitmask.c
+  hyperindex_measurement.c
+  hyperindex_storage.c
+  hyperindex_vstorage.c
+  load_monitor_data.c
+  log.c
+  md5_hash.c
+  rowid_list.c
+  Makefile
+  CMakeCache.txt
+  CMakeLists.txt
+  CMakeFiles=CMakeFiles {
+   TargetDirectories.txt
+   CMakeTmp=CMakeTmp {
+    CMakeFiles=CMakeFiles {
+     cmTryCompileExec.dir=cmTryCompileExec.dir {
+     }
+    }
+   }
+   CompilerIdC=CompilerIdC {
+    CMakeCCompilerId.c
+   }
+   CompilerIdCXX=CompilerIdCXX {
+    CMakeCXXCompilerId.cpp
+   }
+   hyperindex.dir=hyperindex.dir {
+    link.txt
+   }
+  }
+  include=include {
+   atomic.h
+   bitops.h
+   hi_arrlist.h
+   hi_block.h
+   hi_btree.h
+   hi_file_op.h
+   hi_hash.h
+   hi_profiles.h
+   hyperindex_databuffer.h
+   hyperindex_db.h
+   hyperindex_def.h
+   hyperindex_delbitmask.h
+   hyperindex_dispatch.h
+   hyperindex_docindex.h
+   hyperindex_field.h
+   hyperindex_filter.h
+   hyperindex_filter_hash.h
+   hyperindex_hashindex.h
+   hyperindex_hashmap.h
+   hyperindex_measurement.h
+   hyperindex_packet.h
+   hyperindex_packet_execute.h
+   hyperindex_packet_parse.h
+   hyperindex_protocol.h
+   hyperindex_query_basic_struct.h
+   hyperindex_schema_parser.h
+   hyperindex_segment.h
+   hyperindex_server.h
+   hyperindex_set_operator.h
+   hyperindex_sort.h
+   hyperindex_storage.h
+   hyperindex_suffix.h
+   hyperindex_table.h
+   hyperindex_vstorage.h
+   hyperindex_wal.h
+   list.h
+   log.h
+   mem.h
+   rowid_list.h
+   time.h
+   Makefile
+   CMakeLists.txt
+   CMakeFiles=CMakeFiles {
+   }
+  }
+  lib=lib {
+   md5_hash.c
+  }
+  misc=misc {
+   hi_block.c
+   hi_cache.c
+   hi_checksum.c
+   hi_clear.c
+   hi_close.c
+   hi_comm.c
+   hi_compress.c
+   hi_create.c
+   hi_dbug.c
+   hi_delete.c
+   hi_hash.c
+   hi_info.c
+   hi_insert.c
+   hi_key.c
+   hi_load.c
+   hi_lock.c
+   hi_log.c
+   hi_mem.c
+   hi_merge.c
+   hi_open.c
+   hi_panic.c
+   hi_query.c
+   hi_range.c
+   hi_scan.c
+   hi_snapshot.c
+   hi_sort.c
+   hi_static.c
+   hi_test.c
+   hi_unique.c
+   hi_update.c
+   hi_vmpage.c
+   hi_wal.c
+   hi_write.c
+   hyperindex_init.c
+   hyperindex_queue.c
+   hyperindex_server.c
+   hyperindex_stop.c
+   hyperindex_threadpool.c
+  }
+ }
+ tests=tests {
+  config.h
+  def.h
+  hi_db_mock.h
+  hyperindex_db_mock.h
+  seg_rowid_list_test.h
+  config.c
+  generate.c
+  hi_db_mock.c
+  hi_suffix_mock.c
+  seg_rowid_list_test.c
+  Makefile
+  block_manager.cpp
+  btree.cpp
+  databuffer_test.cpp
+  db.cpp
+  delbit.cpp
+  doclist.cpp
+  field.cpp
+  filter.cpp
+  hash.cpp
+  hashindex.cpp
+  hashmap_test.cpp
+  mem.cpp
+  packet_execute_test.cpp
+  profile.cpp
+  schema_parser.cpp
+  segment.cpp
+  set_operator_test.cpp
+  sort_test.cpp
+  storage.cpp
+  suffix.cpp
+  table.cpp
+  test.cpp
+  vstorage.cpp
+  schema.conf
+  unit_test.conf
+  CMakeFiles=CMakeFiles {
+   test.dir=test.dir {
+    link.txt
+   }
+  }
+ }
+}

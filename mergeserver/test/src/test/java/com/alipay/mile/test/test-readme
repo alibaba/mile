@@ -1,0 +1,17 @@
+1.对于SuitTest的用例执行须知：
+docdb的用例执行，需要执行：test_daily_index.sh
+
+levdb的用例执行，需要在docserver.conf中建立rowkey,time的配置，例如：
+# # table names, seperated by ','
+tables = TEST_VELOCITY
+# # row key field
+TEST_VELOCITY.row_key=ROWKEY
+# # time key field
+TEST_VELOCITY.time_key=GMT_CTEST
+# # time key length, 4 for int32_t(uint32_t), 8 for int64_t(uint64_t)
+TEST_VELOCITY.time_key_len = 8
+# # time_key * 10^time_key_scale = second
+TEST_VELOCITY.time_key_scale = -3
+
+2.如果需要增加模糊查询，以及截断功能，需要增加docserver.conf中的配置项：
+cut_threshold =20

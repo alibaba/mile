@@ -1,0 +1,4 @@
+
+1. install gtest
+2. cmake .
+3. test

@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>ATS Test log</title>
+</head>
+<style type='text/css'>
+<!--
+body { background-color: white; font-family:verdana, arial, helvetica, geneva; font-size: 16px; font-style: italic; color: black; }
+.title { font-family: verdana, arial, helvetica,geneva; font-size: 12px; font-weight:bold; color: white; }
+.body { font-family: verdana, arial, helvetica, geneva; font-size: 12px; font-weight:plain; color: black; }
+.pass { font-family: verdana, arial, helvetica, geneva; font-size: 12px; font-weight:plain; color: black; background-color: lightgreen; }
+.fail { font-family: verdana, arial, helvetica, geneva; font-size: 12px; font-weight:plain; color: black; background-color: #FF0000; }
+#passTestCase { font-family: verdana, arial, helvetica, geneva; font-size: 12px; font-weight:plain; color: black; }
+#failTestCase { font-family: verdana, arial, helvetica, geneva; font-size: 12px; font-weight:plain; color: black; background-color: #FF0000; }
+#tableheader { background-color: #FF6633; }
+#rowcolor1 { background-color: #eeeeee; }
+#rowcolor2 { background-color: white; }
+-->
+</style>
+<script language="javascript">
+HtmlTag ={
+    'GetObjs': function(objName){
+        var nameObj = document.getElementsByName(objName)
+        if(nameObj.length==0){
+            var obj = document.getElementById(objName)
+            return obj==null ?[]:[obj] 
+        }
+        return nameObj
+    },
+    'SetDisplay': function(objName, isHiddon, parentCount){
+        if(parentCount==undefined){
+            parentCount = 0
+        }
+        var objs = HtmlTag.GetObjs(objName)
+        for(var objIndex = 0; objIndex< objs.length; objIndex++){
+            var obj = objs[objIndex]
+            for(var pIndex =0; pIndex < parentCount; pIndex ++)
+                if(obj.parentNode!=undefined)
+                    obj = obj.parentNode
+                else
+                    break
+            obj.style.display = isHiddon?'none':''
+        }
+    }
+}
+function filterResult(isHiddonPass, isHiddonFail){
+    HtmlTag.SetDisplay('passTestCase',isHiddonPass,1)
+    HtmlTag.SetDisplay('failTestCase',isHiddonFail,1)
+}
+function filterStep(objIndex){
+    try{
+        var obj = HtmlTag.GetObjs('stepTable')[objIndex-1]
+        if(obj.style.display != 'none')
+            obj.style.display = "none"
+        else
+            obj.style.display =""
+    }catch(e){}
+}
+function showSubTestCase(refModuleIndex,isShowAll,isShowManual){
+    testResTRs = testresultTable.children[0].children
+    isFirstModule = true
+    displayValue = ""
+    for(trIndex=1; trIndex< testResTRs.length; trIndex++){
+        testResTR = testResTRs[trIndex]
+        var moduleIndex = testResTR.getAttribute("module")
+        if(isShowManual!=undefined){
+            try{
+                isManualTR = testResTR.children[3].innerHTML.indexOf("Manual") >= 0
+                testResTR.style.display = (isShowManual==isManualTR)?"":"none"
+            }catch(e){
+                // always show class TR for this TR just have one td
+            }
+        }else if(isShowAll!=undefined){
+            if(moduleIndex != undefined){
+                testResTR.style.display = isShowAll?"":"none"
+            }
+        }else if(moduleIndex==refModuleIndex){
+            if(isFirstModule){
+                isFirstModule = false
+                displayValue = testResTR.style.display !="none"?"none":""
+            }
+            testResTR.style.display = displayValue
+        }
+    }
+}
+</script>
+<body>
+<div class=body>Show:
+  <input type="radio" name="showType" onClick="filterResult(false,false)" value="1"/>All
+  <input type="radio" name="showType" onClick="filterResult(false,true)"/>Passed
+  <input type="radio" name="showType" onClick="filterResult(true,false)"/>Failed Cases,
+  <input type="checkbox" onClick="HtmlTag.SetDisplay('stepTable', !this.checked)"/>Steps; 
+  <input type="checkbox" onClick="HtmlTag.SetDisplay('configTable', !this.checked)"/>Configs
+  <input type="checkbox" onClick="HtmlTag.SetDisplay('jarsTable', !this.checked)"/>Jars
+<br>Hiddon:
+  <input type="checkbox" onClick="showSubTestCase(0, !this.checked)"/>Scenarios(or Module),
+  <input type="checkbox" onClick="showSubTestCase(0, null, !this.checked)"/>Manual Cases</div>
+<table border='0' width='100%' id="testresultTable">
+  <tr id=tableheader>
+    <th align='left' width='200'>Test Case Name </th>
+    <th width='100'>Tester</th>
+    <th width='50'>Pri</th>
+    <th width='50'>Type</th>
+    <th>Parameter</th>
+    <th>Description</th>
+  </tr>
+  <tr onDblClick="showSubTestCase('1')">
+    <td class='body' colspan='5'><strong>SR621250</strong></td>
+  </tr>
+  <tr id=rowcolor2 module=1>
+    <td id=failTestCase name=failTestCase ondblclick='filterStep(1)'>TC621121 </td><td class=body>xiaoju.luo</td><td class=body>HIGHEST</td><td class=body>Auto</td><td class=body>{}</td><td class=body>当行数据小于1m时，查询正常
+<table  id='stepTable' name='stepTable' width='95%%' align='right' style='display:none'></td></tr><tr>
+ <td class='pass'>[Step] 设置系列参数</td></tr><tr>
+ <td class='pass'>[Step] 执行查询</td></tr>
+<tr>
+ <td class='fail'>[Step] 预期查询结果判定<br>Java heap space<br>	at java.util.Arrays.copyOf(Arrays.java:2786)<br>	at java.lang.StringCoding.safeTrim(StringCoding.java:64)<br>	at java.lang.StringCoding.access$300(StringCoding.java:34)<br>	at java.lang.StringCoding$StringEncoder.encode(StringCoding.java:251)<br>	at java.lang.StringCoding.encode(StringCoding.java:272)<br>	at java.lang.StringCoding.encode(StringCoding.java:284)<br>	at java.lang.String.getBytes(String.java:987)<br>	at com.alipay.ats.log.TestLogger.outuputLogContent(TestLogger.java:83)<br>	at com.alipay.ats.log.TestLogger.logging(TestLogger.java:111)<br>	at com.alipay.ats.log.TestLogger.success(TestLogger.java:221)<br>	at com.alipay.ats.log.TestLoggerFactory.success(TestLoggerFactory.java:151)<br>	at com.alipay.mile.test.SR621250.TC621121(SR621250.java:106)<br>
+</td></tr>
+</table>
+    </td></tr>
+<hr size=2 color='#000000'/><pre class=body>Total	1:
+	Passed: 0 + Failed: 1</pre>
+<pre class=body>Run between 2013-03-21 13:37:50~13:38:12(0.3 min)<pre class=body>
+</table>
+<table class=body id="configTable" style="display:none"><tr><td colspan=2  align=center>Configurations</td></tr></table>
+<table class=body id="jarsTable" style="display:none"><tr><td colspan=2  align=center>Jars</td></tr><tr><td>ats-compact</td><td>3.0</td></tr>
+<tr><td>ats-driver</td><td>3.0</td></tr>
+<tr><td>ats-junit</td><td>3.0</td></tr>
+<tr><td>ats-testng</td><td>3.0</td></tr>
+<tr><td>bsh</td><td>2.0b4</td></tr>
+<tr><td>commons-collections</td><td>3.2.1</td></tr>
+<tr><td>commons-lang</td><td>2.4</td></tr>
+<tr><td>commons-logging</td><td>1.1.1</td></tr>
+<tr><td>dom4j</td><td>1.6.1</td></tr>
+<tr><td>hamcrest-core</td><td>1.1</td></tr>
+<tr><td>hamcrest-library</td><td>1.2.1</td></tr>
+<tr><td>icu4j</td><td>2.6.1</td></tr>
+<tr><td>ikanalyzer</td><td>3.2.8</td></tr>
+<tr><td>jaxen</td><td>1.1.3</td></tr>
+<tr><td>jcommander</td><td>1.27</td></tr>
+<tr><td>jdom</td><td>1.0</td></tr>
+<tr><td>junit</td><td>4.8.2</td></tr>
+<tr><td>junit-dep</td><td>4.8.2</td></tr>
+<tr><td>log4j</td><td>1.2.13</td></tr>
+<tr><td>netty</td><td>3.2.4.Final</td></tr>
+<tr><td>snakeyaml</td><td>1.6</td></tr>
+<tr><td>testng</td><td>6.8</td></tr>
+<tr><td>xalan</td><td>2.6.0</td></tr>
+<tr><td>xercesImpl</td><td>2.6.2</td></tr>
+<tr><td>xml-apis</td><td>1.3.02</td></tr>
+<tr><td>xmlParserAPIs</td><td>2.6.2</td></tr>
+<tr><td>xom</td><td>1.0</td></tr><tr><td>!Jar-client</td><td></td></tr>
+<tr><td>!Jar-common</td><td></td></tr></table>
+
+</body>
+</html>

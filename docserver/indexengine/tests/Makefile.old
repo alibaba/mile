@@ -1,0 +1,48 @@
+# NOTE: use make CF=-DVALGRIND_MEM_TEST to build memory test binary.
+
+LDPATH = -L/usr/local/lib -L./../lib/ 
+INCLUDE= -I/usr/local/include
+
+CFLAG = -Wall -c -g -pg $(CF) -D_GNU_SOURCE
+GCC = g++
+CC = gcc 
+SRC_DOCSERVER=../src/hi_server.o ../src/hi_protocol.o ../src/hi_set_operator.o  ../src/hi_query_basic_struct.o ../src/hi_query_basic_struct.o ../src/hi_profiles.o ../src/hi_filter_hash.o ../src/hyperindex_delbitmask.o ../src/hi_suffix.o ../src/rowid_list.o ../src/hi_file_op.o ../src/hi_mem.o ../src/hyperindex_storage.o ../src/hyperindex_vstorage.o ../src/hi_field.o ../src/log.o ../src/hi_filter.o ../src/hi_doclist.o ../src/hi_hash.o ../src/hi_hashindex.o ../src/hi_segment.o ../src/hi_table.o ../src/hi_db.o ../src/hi_config_parser.o ../src/hi_block.o ../src/hi_btree.o ../src/hi_packet_parse.o ../src/hi_packet_execute.o ../src/hi_databuffer.o ../src/hi_sort.o ../src/hi_hashmap.o
+TARG_DOCSERVER=../src/hi_server.o ../src/hi_protocol.o ../src/log.o  ../src/hi_file_op.o ../src/hyperindex_delbitmask.o ../src/hi_set_operator.o ../src/hi_query_basic_struct.o ../src/hi_filter_hash.o ../src/hi_hash.o ../src/rowid_list.o ../src/hyperindex_storage.o ../src/hi_hashindex.o ../src/hyperindex_vstorage.o ../src/hi_mem.o ../src/hi_filter.o ../src/hi_doclist.o ../src/hi_suffix.o ../src/hi_profiles.o ../src/hi_table.o ../src/hi_segment.o ../src/hi_field.o ../src/hi_db.o ../src/hi_config_parser.o  ../src/hi_block.o  ../src/hi_btree.o ../src/hi_packet_parse.o ../src/hi_packet_execute.o ../src/hi_databuffer.o ../src/hi_sort.o ../src/hi_hashmap.o -levent -lpthread
+
+
+
+SRC1=test.o sql_execute_test.o hash.o config.o mem.o storage.o vstorage.o filter.o delbit.o ../src/hi_set_operator.o  ../src/hi_hashmap.o ../src/hi_filter_hash.o ../src/hi_query_basic_struct.o seg_rowid_list_test.o doclist.o hashindex.o profile.o field.o segment.o suffix.o table.o db.o config_parser.o ../src/hi_query_basic_struct.o ../src/hi_profiles.o ../src/hyperindex_delbitmask.o ../src/hi_suffix.o ../src/rowid_list.o ../src/hi_file_op.o ../src/hi_mem.o ../src/hyperindex_storage.o ../src/hyperindex_vstorage.o ../src/hi_field.o ../src/log.o ../src/hi_filter.o ../src/hi_doclist.o ../src/hi_hash.o ../src/hi_hashindex.o ../src/hi_segment.o ../src/hi_table.o ../src/hi_db.o ../src/hi_config_parser.o block_manager.o ../src/hi_block.o ../src/hi_btree.o ../src/hi_packet_parse.o ../src/hi_packet_execute.o ../src/hi_databuffer.o ../src/hi_sort.o btree.o 
+TARG1=../src/log.o sql_execute_test.o config.o ../src/hi_file_op.o ../src/hyperindex_delbitmask.o  ../src/hi_hashmap.o seg_rowid_list_test.o ../src/hi_set_operator.o ../src/hi_filter_hash.o ../src/hi_query_basic_struct.o ../src/hi_hash.o ../src/rowid_list.o ../src/hyperindex_storage.o ../src/hi_hashindex.o ../src/hyperindex_vstorage.o ../src/hi_mem.o ../src/hi_filter.o ../src/hi_doclist.o ../src/hi_suffix.o ../src/hi_profiles.o ../src/hi_table.o ../src/hi_segment.o ../src/hi_field.o ../src/hi_db.o ../src/hi_config_parser.o doclist.o filter.o mem.o storage.o vstorage.o delbit.o hash.o hashindex.o profile.o field.o segment.o suffix.o table.o db.o config_parser.o test.o block_manager.o ../src/hi_block.o btree.o ../src/hi_btree.o ../src/hi_packet_parse.o ../src/hi_packet_execute.o ../src/hi_databuffer.o ../src/hi_sort.o -lgtest -lpthread
+
+
+
+SRC2=../src/hi_dump.o   ../src/hi_protocol.o ../src/hi_set_operator.o  ../src/hi_query_basic_struct.o ../src/hi_query_basic_struct.o ../src/hi_profiles.o ../src/hyperindex_measurement.o ../src/hi_filter_hash.o ../src/hyperindex_delbitmask.o ../src/hi_suffix.o ../src/rowid_list.o ../src/hi_file_op.o ../src/hi_mem.o ../src/hyperindex_storage.o ../src/hyperindex_vstorage.o ../src/hi_field.o ../src/log.o ../src/hi_filter.o ../src/hi_doclist.o ../src/hi_hash.o ../src/hi_hashindex.o ../src/hi_segment.o ../src/hi_table.o ../src/hi_db.o ../src/hi_config_parser.o ../src/hi_block.o ../src/hi_btree.o ../src/hi_packet_parse.o ../src/hi_packet_execute.o ../src/hi_databuffer.o ../src/hi_sort.o ../src/hi_hashmap.o
+TARG2=../src/hi_dump.o ../src/hi_protocol.o ../src/log.o  ../src/hi_file_op.o ../src/hyperindex_delbitmask.o ../src/hi_set_operator.o ../src/hi_query_basic_struct.o ../src/hyperindex_measurement.o ../src/hi_filter_hash.o ../src/hi_hash.o ../src/rowid_list.o ../src/hyperindex_storage.o ../src/hi_hashindex.o ../src/hyperindex_vstorage.o ../src/hi_mem.o ../src/hi_filter.o ../src/hi_doclist.o ../src/hi_suffix.o ../src/hi_profiles.o ../src/hi_table.o ../src/hi_segment.o ../src/hi_field.o ../src/hi_db.o ../src/hi_config_parser.o  ../src/hi_block.o  ../src/hi_btree.o ../src/hi_packet_parse.o ../src/hi_packet_execute.o ../src/hi_databuffer.o ../src/hi_sort.o ../src/hi_hashmap.o -levent -lpthread
+
+
+#SRC_TEST_CHENQUN=../src/hi_packet_execute.o ../src/hi_sort.o ../src/hi_profiles.o ../src/hyperindex_delbitmask.o  ../src/hi_hashmap.o ../src/rowid_list.o ../src/hyperindex_measurement.o ../src/hi_file_op.o ../src/hi_mem.o ../src/hi_filter_hash.o ../src/hyperindex_storage.o ../src/hyperindex_vstorage.o ../src/hi_field.o ../src/log.o ../src/hi_filter.o ../src/hi_doclist.o ../src/hi_hash.o ../src/hi_hashindex.o ../src/hi_segment.o ../src/hi_table.o ../src/hi_db.o ../src/hi_config_parser.o ../src/hi_suffix.o ../src/hi_set_operator.o ../src/hi_query_basic_struct.o ../src/hi_btree.o ../src/hi_block.o 
+#TARG_TEST_CHENQUN=../src/hi_packet_execute.o ../src/hi_sort.o ../src/log.o ../src/hi_file_op.o ../src/hi_hashmap.o ../src/hyperindex_delbitmask.o ../src/hyperindex_measurement.o ../src/hi_hash.o ../src/rowid_list.o ../src/hi_filter_hash.o ../src/hyperindex_storage.o ../src/hi_hashindex.o ../src/hyperindex_vstorage.o ../src/hi_mem.o ../src/hi_filter.o ../src/hi_doclist.o ../src/hi_profiles.o ../src/hi_table.o ../src/hi_segment.o ../src/hi_field.o ../src/hi_db.o ../src/hi_config_parser.o ../src/hi_suffix.o ../src/hi_set_operator.o ../src/hi_query_basic_struct.o ../src/hi_btree.o ../src/hi_block.o -lpthread
+
+
+SRC_TEST_CHENQUN=test.o ../src/log.o ../src/hi_profiles.o ../src/hi_hashmap.o ../src/hi_mem.o ../src/rowid_list.o ../src/hi_databuffer.o ../src/hi_query_basic_struct.o ../src/hi_set_operator.o ../src/hi_sort.o ../src/hi_packet_parse.o ./seg_rowid_list_test.o ./databuffer_test.o ./set_operator_test.o ./sort_test.o
+TARG_TEST_CHENQUN=test.o ../src/log.o ../src/hi_profiles.o ../src/hi_hashmap.o ../src/hi_mem.o ../src/rowid_list.o ../src/hi_databuffer.o ../src/hi_query_basic_struct.o ../src/hi_set_operator.o ../src/hi_sort.o ../src/hi_packet_parse.o  ./seg_rowid_list_test.o ./databuffer_test.o ./set_operator_test.o ./sort_test.o -lgtest -lcmockery -lpthread
+
+
+
+ALL:docserver mile_client
+docserver: $(SRC_DOCSERVER)
+	$(GCC) $(INCLUDE) $(LDPATH) -o $@ $(TARG_DOCSERVER)
+test: $(SRC1)
+	$(GCC) $(INCLUDE) $(LDPATH) -o $@ $(TARG1) 
+mile_client: $(SRC2)
+	$(GCC) $(INCLUDE) $(LDPATH) -o $@ $(TARG2)
+test_chenqun: $(SRC_TEST_CHENQUN)
+	$(GCC) $(LDPATH) -o $@ $(TARG_TEST_CHENQUN)
+.cpp.o:
+	$(GCC) $(INCLUDE) $(CFLAG) -o $@ $< 
+.c.o:
+	$(CC) $(INCLUDE) $(CFLAG) -o $@ $< 
+
+clean:
+	rm -f *.o test docserver test_chenqun mile_client *.o ../src/*.o
+

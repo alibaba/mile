@@ -1,0 +1,13 @@
+
+LDPATH = -L./../lib/ -L./../../test/lib/
+INCLUDE= -I./../../test/include
+
+CFLAG = -c -g -pg 
+GCC = g++
+.SUFFIXES: .o .cpp .c
+test: test.o mem.o ../src/hi_mem.o
+	$(GCC) $(LDPATH) -o $@ ../src/hi_mem.o mem.o test.o -lgtest 
+.cpp.o:
+	$(GCC) $(CFLAG) -o $@ $< 
+.c.o:
+	$(GCC) $(CFLAG) -o $@ $< 

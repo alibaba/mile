@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+	<!--
+	- Log4j配置文件。
+-->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!--
+		Appenders
+	-->
+	<!-- [公共Appender] 默认 -->
+	<appender name="DEFAULT-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file" value="${LOG_PATH}/${HOST_NAME}/common-default.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+
+	<!-- [公共Appender] 汇总错误 -->
+	<appender name="ERROR-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file" value="${LOG_PATH}/${HOST_NAME}/common-error.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="threshold" value="error" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- [公共Appender] critical错误 -->
+	<appender name="CRITICAL-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file" value="${LOG_PATH}/${HOST_NAME}/common-critical.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="threshold" value="error" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] 汇总性能统计 -->
+	<appender name="PERF-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file" value="${LOG_PATH}/${HOST_NAME}/common-perf.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+	
+	
+	<!-- [公共Appender] 汇总摘要统计 -->
+	<appender name="DIGEST-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file" value="${LOG_PATH}/${HOST_NAME}/common-digest.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] 系统初始化 -->
+	<appender name="SYSINIT-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file" value="${LOG_PATH}/${HOST_NAME}/common-sysinit.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] 控制台STDOUT -->
+	<appender name="STDOUT-APPENDER" class="org.apache.log4j.ConsoleAppender">
+		<param name="encoding" value="GBK" />
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %c{2} , %m%n" />
+		</layout>
+
+	</appender>
+
+	<!-- [公共Appender] 控制台STDERR -->
+	<appender name="STDERR-APPENDER" class="org.apache.log4j.ConsoleAppender">
+		<param name="encoding" value="GBK" />
+		<param name="target" value="System.err" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %c{2} , %m%n" />
+		</layout>
+
+	</appender>
+
+	<!-- [监控大盘Digest的Appender] 性能摘要 -->
+	<appender name="DIGEST-MERGE-INSERT-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file"
+			value="${LOG_PATH}/${HOST_NAME}/common-mergeserver-insert-digest.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+	<appender name="DIGEST-MERGE-QUERY-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file"
+			value="${LOG_PATH}/${HOST_NAME}/common-mergeserver-query-digest.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+	<appender name="DIGEST-DOC-INSERT-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file"
+			value="${LOG_PATH}/${HOST_NAME}/common-docserver-insert-digest.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+	<appender name="DIGEST-DOC-QUERY-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file"
+			value="${LOG_PATH}/${HOST_NAME}/common-docserver-query-digest.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+	<appender name="DIGEST-TOPTEN-INSERT-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file"
+			value="${LOG_PATH}/${HOST_NAME}/common-topten-insert-digest.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+	<appender name="DIGEST-TOPTEN-QUERY-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file"
+			value="${LOG_PATH}/${HOST_NAME}/common-topten-query-digest.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+	<appender name="MILE-STATUS-APPENDER" class="com.alipay.mile.util.DailyRollingFileAppender">
+		<param name="file" value="${LOG_PATH}/${HOST_NAME}/common-mile-status.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} , %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] 空 -->
+	<appender name="NULL-APPENDER" class="org.apache.log4j.varia.NullAppender" />
+
+	<!-- ===== [应用Appender] ===== -->
+
+	<!--
+		=====================================================================
+	-->
+	<!--
+		Loggers
+	-->
+	<!--
+		=====================================================================
+	-->
+
+	<!-- ===== [公共Logger] ===== -->
+	<!-- [公共Logger] 严重错误 -->
+	<logger name="CRITICAL" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="CRITICAL-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [公共Logger] 性能  -->
+	<logger name="PERF" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="PERF-APPENDER" />
+	</logger>
+
+	<!-- [公共Logger] 系统初始化 -->
+	<logger name="SYSINIT" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="SYSINIT-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	
+	
+	<!-- [公共Logger] 摘要 -->
+	<logger name="COMMON-DIGEST" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DIGEST-APPENDER" />
+	</logger>
+
+	
+	<!-- [公共Logger] 默认 -->
+	<logger name="COMMON-DEFAULT" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DEFAULT-APPENDER" />
+	</logger>
+	
+
+	<!-- [公共Logger] 控制台STDOUT - STDOUT -->
+	<logger name="STDOUT" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="STDOUT-APPENDER" />
+	</logger>
+
+	<!-- [公共Logger] 控制台STDERR - STDERR -->
+	<logger name="STDERR" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="STDERR-APPENDER" />
+	</logger>
+
+	<!-- [Log-Digest的Logger] 打印Digest日志 -->
+	<logger name="DIGEST-MERGE-INSERT" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DIGEST-MERGE-INSERT-APPENDER" />
+	</logger>
+	<logger name="DIGEST-MERGE-QUERY" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DIGEST-MERGE-QUERY-APPENDER" />
+	</logger>
+	<logger name="DIGEST-DOC-INSERT" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DIGEST-DOC-INSERT-APPENDER" />
+	</logger>
+	<logger name="DIGEST-DOC-QUERY" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DIGEST-DOC-QUERY-APPENDER" />
+	</logger>
+	<logger name="com.alipay.mile.log.Top10MergeServerInsertDigest"
+		additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DIGEST-TOPTEN-INSERT-APPENDER" />
+	</logger>
+	<logger name="com.alipay.mile.log.Top10MergeServerQueryDigest"
+		additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DIGEST-TOPTEN-QUERY-APPENDER" />
+	</logger>
+	<logger name="com.alipay.mile.log.DigestPrintOut" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="MILE-STATUS-APPENDER" />
+	</logger>
+
+
+	<root>
+		<level value="WARN" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</root>
+</log4j:configuration>
+
